@@ -513,8 +513,8 @@ class StreamableHTTPServerTransport:
                         # Then send the message to be processed by the server
                         session_message = SessionMessage(message)
                         await writer.send(session_message)
-                except Exception:
-                    logger.exception("SSE response error")
+                except Exception as e:
+                    logger.exception(f"SSE response error: {e}")
                     await sse_stream_writer.aclose()
                     await sse_stream_reader.aclose()
                     await self._clean_up_memory_streams(request_id)
