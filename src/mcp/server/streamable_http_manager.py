@@ -202,7 +202,7 @@ class StreamableHTTPSessionManager:
         """
         request = Request(scope, receive)
         request_mcp_session_id = request.headers.get(MCP_SESSION_ID_HEADER)
-
+        logger.error(f"SESSION ID: {request_mcp_session_id}")
         # Existing session case
         if (
             request_mcp_session_id is not None
