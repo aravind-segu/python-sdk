@@ -410,6 +410,7 @@ class StreamableHTTPServerTransport:
             ](0)
             request_stream_reader = self._request_streams[request_id][1]
 
+            logger.error(f"JSON RESPONSE ENABLED: {self.is_json_response_enabled:}")
             if self.is_json_response_enabled:
                 # Process the message
                 session_message = SessionMessage(message)
