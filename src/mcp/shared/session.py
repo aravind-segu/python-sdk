@@ -351,11 +351,11 @@ class BaseSession(
             self._write_stream,
         ):
             async for message in self._read_stream:
-                logging.error(f"GOT MESSAGE {message}")
+                logging.error(f"[ARAVIND] GOT MESSAGE {message}")
                 if isinstance(message, Exception):
                     await self._handle_incoming(message)
                 elif isinstance(message.message.root, JSONRPCRequest):
-                    logging.error(f"GOT RPC REQUEST {message}")
+                    logging.error(f"[ARAVIND] GOT RPC REQUEST {message}")
                     validated_request = self._receive_request_type.model_validate(
                         message.message.root.model_dump(
                             by_alias=True, mode="json", exclude_none=True
@@ -379,7 +379,7 @@ class BaseSession(
                         await self._handle_incoming(responder)
 
                 elif isinstance(message.message.root, JSONRPCNotification):
-                    logging.error(f"GOT NOTIFICATION {message}")
+                    logging.error(f"[ARAVIND] GOT NOTIFICATION {message}")
                     try:
                         notification = self._receive_notification_type.model_validate(
                             message.message.root.model_dump(
